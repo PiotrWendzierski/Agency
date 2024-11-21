@@ -1,0 +1,107 @@
+<nav class="simple-menu">
+    <ul>
+        <li><a href="index.php" id="homeLink">Home</a></li>
+        <li><a href="add.php" id="addClientLink">Add New Client</a></li>
+        <li class="dropdown">
+            <a href="#">Info</a>
+            <ul class="dropdown-menu">
+                <li><a href="subscription.php" id="subscriptionsInfoLink">Subscriptions Info</a></li>
+                <li><a href="contacts.php" id="contactsInfoLink">Contacts Info</a></li>
+            </ul>
+        </li>
+        <li><a href="employee.php" id="employeeInfoLink">Employee Info</a></li>
+    </ul>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() 
+{
+    
+    $('nav ul li a').on('click', function() 
+    {
+        $('nav ul li a').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $('.dropdown').hover(function() 
+    {
+        $(this).children('.dropdown-menu').stop(true, true).slideDown(200);
+    }, function() 
+    {
+        $(this).children('.dropdown-menu').stop(true, true).slideUp(200);
+    });
+});
+</script>
+
+<style>
+    body 
+    {
+        margin: 0;
+        padding: 0;
+    }
+    nav.simple-menu 
+    {
+        margin:0;
+        background-color: #007BFF;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    nav.simple-menu ul 
+    {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav.simple-menu ul li 
+    {
+        position: relative;
+        margin: 0 15px;
+    }
+
+    nav.simple-menu ul li a 
+    {
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    nav.simple-menu ul li a:hover 
+    {
+        background-color: #3399FF;
+        color: #fff;
+    }
+
+    .dropdown-menu 
+    {
+        display: none;
+        left: 0;
+        background-color: #007BFF;
+        min-width: 200px;
+        z-index: 1000;
+    }
+
+    .dropdown-menu li 
+    {
+        margin: 0;
+    }
+
+    .dropdown-menu li a 
+    {
+        padding: 10px 20px;
+        display: block;
+    }
+
+    .dropdown-menu li a:hover 
+    {
+        background-color: #3399FF;
+        color: #fff;
+    }
+</style>

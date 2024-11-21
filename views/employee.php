@@ -27,6 +27,7 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<?php include "menu.html"; ?>
 <div class="container" >
     <h1>Employees with their clients</h1>
     <table class="table">

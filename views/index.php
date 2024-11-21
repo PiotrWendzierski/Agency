@@ -39,18 +39,17 @@ $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <?php include "menu.html"; ?>
     <div class="container" >
         <h1>Clients list</h1>
-        <a href="add.php"><button  type="submit" class="btn btn-primary">ADD NEW</button></a></BR></br>
-        <a href="employee.php"><button  type="submit" class="btn btn-primary">EMPLOYEES INFO</button></a>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nazwa klienta</th>
-                    <th>Pakiet</th>
-                    <th>Osoba kontaktowa</th>
-                    <th>Telefon osoby kontaktowej</th>
-                    <th>Opiekunowie</th>
+                    <th>Client name</th>
+                    <th>Subscription</th>
+                    <th>Contact name</th>
+                    <th>Contact telephone</th>
+                    <th>Protectors</th>
                 </tr>
             </thead>
             <tbody>

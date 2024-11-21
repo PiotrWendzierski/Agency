@@ -141,6 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<?php include "menu.html"; ?>
     <div class="container" style = width:50%>
         <h1>Add new client</h1>
         <form action="add.php" method="POST">
