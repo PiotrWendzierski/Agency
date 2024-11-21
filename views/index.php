@@ -41,7 +41,8 @@ $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="container" >
         <h1>Clients list</h1>
-        <a href="add.php"><button  type="submit" class="btn btn-primary">ADD NEW</button></a>
+        <a href="add.php"><button  type="submit" class="btn btn-primary">ADD NEW</button></a></BR></br>
+        <a href="employee.php"><button  type="submit" class="btn btn-primary">EMPLOYEES INFO</button></a>
         <table class="table">
             <thead>
                 <tr>
@@ -66,5 +67,6 @@ $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     </div>
+    
 </body>
 </html>
