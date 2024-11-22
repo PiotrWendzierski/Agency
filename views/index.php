@@ -1,7 +1,7 @@
 <?php
 include '../db.php';
 //pagination php
-$records_per_page =1;
+$records_per_page =2;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $records_per_page;
 
@@ -59,6 +59,7 @@ $total_pages = ceil($total_clients / $records_per_page);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klienci i Pracownicy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
 <body>
     <?php include "menu.html"; ?>
@@ -70,7 +71,7 @@ $total_pages = ceil($total_clients / $records_per_page);
             </div>
             <a href="add.php"><button type="button" class="btn btn-primary">Add new</button></a>
         <?php else: ?>
-        <table class="table">
+        <table id = "clientsTable" class="table">
             <thead>
                 <tr>
                     <th>Client name</th>
@@ -103,6 +104,21 @@ $total_pages = ceil($total_clients / $records_per_page);
                 <?php endfor; ?>
             </ul>
         </nav>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#clientsTable').DataTable({
+                "paging": false,        
+                "searching": true,     
+                "ordering": true,     
+                "info": false,          
+                "lengthChange": true   
+            });
+        });
+    </script>
     </div>
         
 </body>
