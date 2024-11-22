@@ -64,6 +64,12 @@ $total_pages = ceil($total_clients / $records_per_page);
     <?php include "menu.html"; ?>
     <div class="container" >
         <h1>Clients list</h1>
+        <?php if (empty($clients)): ?>
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-circle"></i> <strong>No clients found.</strong>
+            </div>
+            <a href="add.php"><button type="button" class="btn btn-primary">Add new</button></a>
+        <?php else: ?>
         <table class="table">
             <thead>
                 <tr>
@@ -87,6 +93,7 @@ $total_pages = ceil($total_clients / $records_per_page);
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php endif; ?>
         <nav>
             <ul class="pagination">
                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>

@@ -36,6 +36,12 @@ $total_pages = ceil($total_contacts / $records_per_page);
 <?php include "menu.html"; ?>
     <div class="container" >
         <h1>Contacts info</h1>
+        <?php if (empty($contacts)): ?>
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-circle"></i> <strong>No contacts found.</strong>
+            </div>
+            <a href="add.php"><button type="button" class="btn btn-primary">Add new</button></a>
+        <?php else: ?>
         <table class="table">
         <thead>
         <tr>
@@ -55,6 +61,7 @@ $total_pages = ceil($total_contacts / $records_per_page);
             <?php endforeach; ?>
         </tbody>
         </table>
+        <?php endif; ?>
         <nav>
             <ul class="pagination">
                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>
