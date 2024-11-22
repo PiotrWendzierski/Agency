@@ -175,12 +175,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <div class="mb-3">
                 <label for="phone" class="form-label">Phone-number</label>
                 <input type="text" class="form-control" id="phone" name="phone">
-            </div>
-            <div class="mb-3">
+            </div> Choose your protector (At leats 1)</br>
+            <div class="form-check">
+               
                 <?php 
                 foreach ($employees as $employee) 
                 {
-                    echo "<input type='checkbox' name='employee_id[]' value='" . $employee['id'] . "'>" . $employee['name'] . "</input><br>";
+                    echo "<input class='form-check-input' type='checkbox' name='employee_id[]' value='" . $employee['id'] . "'>" . $employee['name'] . "</input><br>";
                 }
                 if(isset($_SESSION['protector']))
 			    {
@@ -189,13 +190,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			    }
                 ?>
             </div>
-            <div class="mb-3">
-                <select name="subscription">
+            <div class="mb-3"></br>
+                <select class="form-select" name="subscription">
                 <option>Choose subscription</option>
                 <?php 
                 foreach ($subscriptions as $subscription) 
                 {
-                    echo "<option value='" . $subscription['id'] . "'>" . $subscription['name'] . "</option>";
+                    echo "<option class='form-select' value='" . $subscription['id'] . "'>" . $subscription['name'] . "</option>";
                 }
                 ?>
                 </select>
