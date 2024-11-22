@@ -1,8 +1,18 @@
 <?php
 include "../db.php";
-$query = "SELECT * FROM subscription";
+//pagination
+$records_per_page = 1;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $records_per_page;
+
+$query = "SELECT * FROM subscription LIMIT $records_per_page OFFSET $offset";
 $stmt = $pdo->query($query);
 $subs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$count_query = "SELECT COUNT(*) AS total FROM subscription";
+$count_stmt = $pdo->query($count_query);
+$total_subscriptions = $count_stmt->fetch(PDO::FETCH_ASSOC)['total'];
+$total_pages = ceil($total_subscriptions / $records_per_page);
 
 ?>
 <!DOCTYPE html>
@@ -36,6 +46,15 @@ $subs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </tbody>
         </table>
+        <nav>
+            <ul class="pagination">
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
     </div>
     
 </body>

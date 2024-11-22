@@ -1,6 +1,9 @@
 <?php
 include '../db.php';
-
+//pagination php
+$records_per_page =1;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $records_per_page;
 
 $query = "
 SELECT 
@@ -24,10 +27,29 @@ JOIN
     contacts con ON c.id = con.client_id
 GROUP BY 
     c.id, c.name, s.name, con.name, con.phone
+LIMIT $records_per_page OFFSET $offset
 ";
 
 $stmt = $pdo->query($query);
 $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$count_query = "
+SELECT COUNT(*) AS total FROM clients c
+JOIN 
+    client_subscriptions cs ON c.id = cs.client_id
+JOIN    
+    subscription s ON cs.subscription_id = s.id
+JOIN 
+    client_employees ce ON c.id = ce.client_id
+JOIN 
+    employees e ON ce.employee_id = e.id
+JOIN 
+    contacts con ON c.id = con.client_id
+";
+$count_stmt = $pdo->query($count_query);
+$total_clients = $count_stmt->fetch(PDO::FETCH_ASSOC)['total'];
+
+$total_pages = ceil($total_clients / $records_per_page);
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +87,16 @@ $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <nav>
+            <ul class="pagination">
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
     </div>
-    
+        
 </body>
 </html>
